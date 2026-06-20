@@ -1,0 +1,21 @@
+# Runtime dependencies for the damage-claim verification system.
+# Pinned to the versions this solution was developed and evaluated against (reproducibility).
+
+# Core
+python-dotenv==1.2.1     # load API keys from code/.env (env-only secrets)
+pydantic==2.12.5         # request/response models for the API
+
+# Brain provider — Gemini is the model used for output.csv (gemini-3-flash-preview)
+google-genai==1.65.0
+
+# Optional alternate providers (provider-agnostic design; install only if you switch
+# CLAIMREVIEW_PROVIDER). Safe to remove if you only run Gemini.
+anthropic==0.76.0
+openai==2.28.0
+
+# Deployable single-claim API (code/api/app.py)
+fastapi==0.115.14
+uvicorn[standard]==0.34.3
+
+# NOTE: evaluation metrics (precision/recall/macro-F1/confusion) are hand-rolled in
+# evaluation/metrics.py — no scikit-learn / numpy dependency, by design.

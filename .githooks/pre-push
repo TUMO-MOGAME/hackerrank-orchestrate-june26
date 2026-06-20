@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+#
+# Pre-push test gate — keep the branch green.
+# Enable once per clone:  git config core.hooksPath .githooks
+# Emergency bypass (discouraged): git push --no-verify
+#
+set -e
+
+echo "── pre-push gate ─────────────────────────────────────────────"
+
+fail() { echo ""; echo "❌ Push BLOCKED: $1"; exit 1; }
+
+if [ -d "code" ]; then
+  if python -m ruff --version >/dev/null 2>&1; then
+    echo "▶ ruff (code/)…"
+    ( cd code && python -m ruff check . ) || fail "lint failed"
+  else
+    echo "• ruff not installed locally — skipping lint (CI still runs it)."
+  fi
+  if python -c "import pytest" >/dev/null 2>&1; then
+    echo "▶ pytest (code/)…"
+    ( cd code && python -m pytest -q ) || fail "tests failed"
+  else
+    echo "• pytest not installed locally — skipping tests (CI still runs it)."
+  fi
+fi
+
+echo "✅ checks passed — push allowed."

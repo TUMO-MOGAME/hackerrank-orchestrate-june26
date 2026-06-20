@@ -1,0 +1,26 @@
+{
+  "name": "orchestrate-claim-review",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Multi-modal damage claim verification — web + mobile clients over the Python agent API",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "web": "npm run dev --workspace apps/web",
+    "web:build": "npm run build --workspace apps/web",
+    "mobile": "npm run start --workspace apps/mobile",
+    "shared:build": "npm run build --workspace packages/shared",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "overrides": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "@types/react": "18.3.31",
+    "@types/react-dom": "18.3.7"
+  }
+}

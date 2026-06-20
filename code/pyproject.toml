@@ -1,0 +1,21 @@
+[project]
+name = "claimreview"
+version = "0.0.0"
+description = "Multi-modal damage claim verification — HackerRank Orchestrate (June 2026)"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-q"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+src = ["src"]
+
+[tool.ruff.lint]
+select = ["E", "W", "F", "I", "B", "C4", "UP"]
+
+[tool.ruff.format]
+quote-style = "double"

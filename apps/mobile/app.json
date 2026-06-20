@@ -1,0 +1,12 @@
+{
+  "expo": {
+    "name": "Claim Review",
+    "slug": "claimreview-mobile",
+    "version": "0.0.0",
+    "orientation": "portrait",
+    "platforms": ["ios", "android"],
+    "extra": {
+      "apiUrl": "http://localhost:8000"
+    }
+  }
+}
